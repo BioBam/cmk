@@ -77,5 +77,4 @@ This project is licensed under the Apache License Version 2.0. See the [LICENSE]
 ## Acknowledgements
 
 ![](img/logo_UE_FEDER_horiz_convivencia_AVI_Cas.png)
-
-> Actuación cofinanciada por la Unión Europea a través del Programa Operativo del Fondo Europeo de Desarrollo Regional (FEDER) de la Comunitat Valenciana 2014-2020
+Actuación cofinanciada por la Unión Europea a través del Programa Operativo del Fondo Europeo de Desarrollo Regional (FEDER) de la Comunitat Valenciana 2014-2020
