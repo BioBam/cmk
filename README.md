@@ -16,6 +16,7 @@ This is a fine-grained metrics monitoring system optimized for bioinformatics wo
     - [Dashboards](#dashboards)
     - [Features](#features)
   - [License](#license)
+  - [Acknowledgements](#acknowledgements)
 
 ## Introduction
 
@@ -43,16 +44,16 @@ For the metrics collection, we use a Telegraf agent. Telegraf is a production-re
 
 ### Storage
 
-The Telegraf agent is configured with a Timestream output plugin to store the collected metrics data in Amazon Timestream, a fully managed serverless time series database service offered by AWS. The metrics are persisted in this database for a defined period, after which the data is automatically removed. 
-
+The Telegraf agent is configured with a Timestream output plugin to store the collected metrics data in Amazon Timestream, a fully managed serverless time series database service offered by AWS. The metrics are persisted in this database for a defined period, after which the data is automatically removed.
 
 ### Access
+
 The metrics data can be directly retrieved from the Amazon Timestream service using the AWS console or from a third-party platform with Timestream integration. e.g., Grafana Cloud.
 Aggregated statistics of the data are available via the REST API implemented in the API Gateway service or as events every time a task ends by subscribing with a rule to the custom event bus.
 Amazon Cognito is used to access the REST API with authenticated users.
 
-
 ### Dashboards
+
 A Grafana dashboard can directly visualize the resources used by a task, or by a group of tasks.
 
 Metrics of One Task             |  Metrics Aggregated by Task Family
@@ -60,6 +61,7 @@ Metrics of One Task             |  Metrics Aggregated by Task Family
 ![](img/dashboard_one_task.png)  |  ![](img/dashboard_aggregate_by_family.png)
 
 ### Features
+
 - Unified collection and visualization of metrics from different WMS
 - Serverless, cost-effective implementation on AWS
 - Monitoring tasks executed on AWS Batch, a popular backend platform for scientific WMS
@@ -70,7 +72,10 @@ Metrics of One Task             |  Metrics Aggregated by Task Family
 
 This project is licensed under the Apache License Version 2.0. See the [LICENSE](LICENSE) file for details.
 
-
 <br>
 
-> **_NOTE:_**  This project is under active development. The code and additional resources will be released soon.
+## Acknowledgements
+
+![](img/logo_UE_FEDER_horiz_convivencia_AVI_Cas.png)
+
+> Actuación cofinanciada por la Unión Europea a través del Programa Operativo del Fondo Europeo de Desarrollo Regional (FEDER) de la Comunitat Valenciana 2014-2020
