@@ -1,0 +1,101 @@
+{
+  "jobId": "a9ee05fc-c3d4-4092-b915-f7608a2d598d",
+  "duration": 241268,
+  "cpu": {
+      "assignedCount": 5,
+      "maxPercentage": 182.40169234831814,
+      "avgPercentage": 134.14245120818964,
+      "timeReserved": 1206340000000,
+      "timeUsed": 307815718970,
+      "timeThrottled": 0,
+      "labels": [
+          {
+              "name": "host",
+              "value": "i-098c03a7f45370aa0"
+          },
+          {
+              "name": "com.amazonaws.ecs.task-definition-family",
+              "value": "hmmscan-version-1"
+          },
+          {
+              "name": "com.amazonaws.ecs.task-definition-version",
+              "value": "250"
+          },
+          {
+              "name": "AWS_BATCH_CE_NAME",
+              "value": "Generic_100_21_Jun_21"
+          },
+          {
+              "name": "AWS_BATCH_JOB_ID",
+              "value": "a9ee05fc-c3d4-4092-b915-f7608a2d598d"
+          },
+          {
+              "name": "AWS_EXECUTION_ENV",
+              "value": "AWS_ECS_EC2"
+          },
+          {
+              "name": "container_image",
+              "value": "000000000000.dkr.ecr.us-east-2.amazonaws.com/scloud/hmmscan"
+          },
+          {
+              "name": "container_name",
+              "value": "ecs-hmmscan-version-1-250-default-c0dffdd5c2b0e795b901"
+          },
+          {
+              "name": "container_version",
+              "value": "1"
+          },
+          {
+              "name": "server_version",
+              "value": "20.10.13"
+          }
+      ]
+  },
+  "mem": {
+      "limit": 13107200000,
+      "avg": 454095018.6666667,
+      "max": 2049036288
+  },
+  "labels": [
+      {
+          "name": "host",
+          "value": "i-098c03a7f45370aa0"
+      },
+      {
+          "name": "com.amazonaws.ecs.task-definition-family",
+          "value": "hmmscan-version-1"
+      },
+      {
+          "name": "com.amazonaws.ecs.task-definition-version",
+          "value": "250"
+      },
+      {
+          "name": "AWS_BATCH_CE_NAME",
+          "value": "Generic_100_21_Jun_21"
+      },
+      {
+          "name": "AWS_BATCH_JOB_ID",
+          "value": "a9ee05fc-c3d4-4092-b915-f7608a2d598d"
+      },
+      {
+          "name": "AWS_EXECUTION_ENV",
+          "value": "AWS_ECS_EC2"
+      },
+      {
+          "name": "container_image",
+          "value": "000000000000.dkr.ecr.us-east-2.amazonaws.com/scloud/hmmscan"
+      },
+      {
+          "name": "container_name",
+          "value": "ecs-hmmscan-version-1-250-default-c0dffdd5c2b0e795b901"
+      },
+      {
+          "name": "container_version",
+          "value": "1"
+      },
+      {
+          "name": "server_version",
+          "value": "20.10.13"
+      }
+  ]
+}

@@ -1,0 +1,89 @@
+{
+    "version": "0",
+    "id": "ea2460ab-258b-59b6-3a4a-a979ede2735b",
+    "detail-type": "Batch Job State Change",
+    "source": "aws.batch",
+    "account": "000000000000",
+    "time": "2022-10-21T10:50:12Z",
+    "region": "us-east-2",
+    "resources": [
+        "arn:aws:batch:us-east-2:000000000000:job/a21d45f0-ce74-4cd6-a070-fcade15eb0d1"
+    ],
+    "detail": {
+        "jobArn": "arn:aws:batch:us-east-2:000000000000:job/a21d45f0-ce74-4cd6-a070-fcade15eb0d1",
+        "jobName": "blast-0407235c-7122-48c3-a456-0f8c1620e2c9",
+        "jobId": "a21d45f0-ce74-4cd6-a070-fcade15eb0d1",
+        "jobQueue": "arn:aws:batch:us-east-2:000000000000:job-queue/blast-BVR6",
+        "status": "STARTING",
+        "attempts": [],
+        "createdAt": 1666349056646,
+        "retryStrategy": {
+            "attempts": 4,
+            "evaluateOnExit": []
+        },
+        "dependsOn": [],
+        "jobDefinition": "arn:aws:batch:us-east-2:000000000000:job-definition/blast-version-2:3",
+        "parameters": {},
+        "container": {
+            "image": "000000000000.dkr.ecr.us-east-2.amazonaws.com/scloud/blast:2",
+            "vcpus": 5,
+            "memory": 8000,
+            "command": [
+                "blast-0407235c-7122-48c3-a456-0f8c1620e2c9",
+                "/app/run.py"
+            ],
+            "jobRoleArn": "arn:aws:iam::000000000000:role/BatchJobRole",
+            "volumes": [{
+                "host": {
+                    "sourcePath": "/mnt/serviceData/"
+                },
+                "name": "serviceData"
+            }],
+            "environment": [{
+                    "name": "BATCH_CPU",
+                    "value": "6"
+                },
+                {
+                    "name": "BUCKET_JOB_FOLDER",
+                    "value": "us-east-2:857b395f-c306-444b-a309-b1eb34aeab27/1f6a285b-e0eb-4e50-8b66-b4de795cc10b/blast-0407235c-7122-48c3-a456-0f8c1620e2c9"
+                },
+                {
+                    "name": "BUCKET_SESSION_SHARED_FOLDER",
+                    "value": "us-east-2:857b395f-c306-444b-a309-b1eb34aeab27/1f6a285b-e0eb-4e50-8b66-b4de795cc10b/shared"
+                },
+                {
+                    "name": "BATCH_MEMORY",
+                    "value": "8000"
+                },
+                {
+                    "name": "BUCKET_NAME",
+                    "value": "test-bucket"
+                }
+            ],
+            "mountPoints": [{
+                "containerPath": "/dataImage",
+                "readOnly": true,
+                "sourceVolume": "serviceData"
+            }],
+            "ulimits": [{
+                "hardLimit": 8000,
+                "name": "nofile",
+                "softLimit": 8000
+            }],
+            "containerInstanceArn": "arn:aws:ecs:us-east-2:000000000000:container-instance/blast-BVR6_Batch_991802a2-9be1-3c71-a729-4c15de1fc16b/2174f0560dce4bf4851ddfd01891e070",
+            "taskArn": "arn:aws:ecs:us-east-2:000000000000:task/blast-BVR6_Batch_991802a2-9be1-3c71-a729-4c15de1fc16b/c2242a2ee0144371a19ae053dace2503",
+            "logStreamName": "blast-version-2/default/c2242a2ee0144371a19ae053dace2503",
+            "networkInterfaces": [],
+            "resourceRequirements": [],
+            "secrets": []
+        },
+        "timeout": {
+            "attemptDurationSeconds": 2592000
+        },
+        "tags": {
+            "resourceArn": "arn:aws:batch:us-east-2:000000000000:job/a21d45f0-ce74-4cd6-a070-fcade15eb0d1"
+        },
+        "platformCapabilities": [],
+        "eksAttempts": []
+    }
+}

@@ -1,0 +1,19 @@
+{
+  "wdl_poc.reads1_list": [
+    "/path/to/SRR6312174_1.fastq.gz",
+    "/path/to/SRR6312175_1.fastq.gz",
+    "/path/to/SRR6312190_1.fastq.gz",
+    "/path/to/SRR6312187_1.fastq.gz",
+    "/path/to/SRR6312182_1.fastq.gz",
+    "/path/to/SRR6312181_1.fastq.gz"
+  ],
+  "wdl_poc.reads2_list": [
+    "/path/to/SRR6312174_2.fastq.gz",
+    "/path/to/SRR6312175_2.fastq.gz",
+    "/path/to/SRR6312190_2.fastq.gz",
+    "/path/to/SRR6312187_2.fastq.gz",
+    "/path/to/SRR6312182_2.fastq.gz",
+    "/path/to/SRR6312181_2.fastq.gz"
+  ],
+  "wdl_poc.ref_txome": "/path/to/ref_txome"
+}
