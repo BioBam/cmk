@@ -1,0 +1,86 @@
+{
+    "version": "0",
+    "id": "7b20ccdb-a41a-9e75-3e2f-70f626cfe1cb",
+    "detail-type": "Batch Job State Change",
+    "source": "aws.batch",
+    "account": "000000000000",
+    "time": "2022-10-21T10:49:57Z",
+    "region": "us-east-2",
+    "resources": [
+        "arn:aws:batch:us-east-2:000000000000:job/3d5dd766-e8d5-4693-bdcc-89618d3cc6b2"
+    ],
+    "detail": {
+        "jobArn": "arn:aws:batch:us-east-2:000000000000:job/3d5dd766-e8d5-4693-bdcc-89618d3cc6b2",
+        "jobName": "blast-f6bdcdd7-e99e-4678-9c9d-1afba301e517",
+        "jobId": "3d5dd766-e8d5-4693-bdcc-89618d3cc6b2",
+        "jobQueue": "arn:aws:batch:us-east-2:000000000000:job-queue/blast-BVR6",
+        "status": "RUNNABLE",
+        "attempts": [],
+        "createdAt": 1666349393813,
+        "retryStrategy": {
+            "attempts": 4,
+            "evaluateOnExit": []
+        },
+        "dependsOn": [],
+        "jobDefinition": "arn:aws:batch:us-east-2:000000000000:job-definition/blast-version-2:3",
+        "parameters": {},
+        "container": {
+            "image": "000000000000.dkr.ecr.us-east-2.amazonaws.com/scloud/blast:2",
+            "vcpus": 5,
+            "memory": 8000,
+            "command": [
+                "blast-f6bdcdd7-e99e-4678-9c9d-1afba301e517",
+                "/app/run.py"
+            ],
+            "jobRoleArn": "arn:aws:iam::000000000000:role/BatchJobRole",
+            "volumes": [{
+                "host": {
+                    "sourcePath": "/mnt/serviceData/"
+                },
+                "name": "serviceData"
+            }],
+            "environment": [{
+                    "name": "BATCH_CPU",
+                    "value": "6"
+                },
+                {
+                    "name": "BUCKET_JOB_FOLDER",
+                    "value": "us-east-2:0000abcd-ab12-444b-a309-b1eb34aeab27/1f6a285b-e0eb-4e50-8b66-b4de795cc10b/blast-f6bdcdd7-e99e-4678-9c9d-1afba301e517"
+                },
+                {
+                    "name": "BUCKET_SESSION_SHARED_FOLDER",
+                    "value": "us-east-2:0000abcd-ab12-444b-a309-b1eb34aeab27/1f6a285b-e0eb-4e50-8b66-b4de795cc10b/shared"
+                },
+                {
+                    "name": "BATCH_MEMORY",
+                    "value": "8000"
+                },
+                {
+                    "name": "BUCKET_NAME",
+                    "value": "example-bucket"
+                }
+            ],
+            "mountPoints": [{
+                "containerPath": "/dataImage",
+                "readOnly": true,
+                "sourceVolume": "serviceData"
+            }],
+            "ulimits": [{
+                "hardLimit": 8000,
+                "name": "nofile",
+                "softLimit": 8000
+            }],
+            "networkInterfaces": [],
+            "resourceRequirements": [],
+            "secrets": []
+        },
+        "timeout": {
+            "attemptDurationSeconds": 2592000
+        },
+        "tags": {
+            "resourceArn": "arn:aws:batch:us-east-2:000000000000:job/3d5dd766-e8d5-4693-bdcc-89618d3cc6b2"
+        },
+        "platformCapabilities": [],
+        "eksAttempts": []
+    }
+}

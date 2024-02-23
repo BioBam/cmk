@@ -1,0 +1,1564 @@
+{
+  "__inputs": [
+    {
+      "name": "DS_AMAZONTIMESTREAM",
+      "label": "AmazonTimestream",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "grafana-timestream-datasource",
+      "pluginName": "Amazon Timestream"
+    }
+  ],
+  "__elements": {},
+  "__requires": [
+    {
+      "type": "panel",
+      "id": "bargauge",
+      "name": "Bar gauge",
+      "version": ""
+    },
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "10.4.0-65875"
+    },
+    {
+      "type": "datasource",
+      "id": "grafana-timestream-datasource",
+      "name": "Amazon Timestream",
+      "version": "2.3.0"
+    },
+    {
+      "type": "panel",
+      "id": "stat",
+      "name": "Stat",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "table",
+      "name": "Table",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "text",
+      "name": "Text",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "timeseries",
+      "name": "Time series",
+      "version": ""
+    }
+  ],
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": null,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "datasource": {
+        "type": "grafana-timestream-datasource",
+        "uid": "${DS_AMAZONTIMESTREAM}"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "none",
+          "unitScale": true
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "max"
+            },
+            "properties": [
+              {
+                "id": "custom.fillBelowTo",
+                "value": "min"
+              },
+              {
+                "id": "custom.lineWidth",
+                "value": 0
+              },
+              {
+                "id": "custom.fillOpacity",
+                "value": 25
+              },
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "yellow",
+                  "mode": "fixed"
+                }
+              },
+              {
+                "id": "custom.lineInterpolation",
+                "value": "smooth"
+              },
+              {
+                "id": "custom.showPoints",
+                "value": "never"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "min"
+            },
+            "properties": [
+              {
+                "id": "custom.lineWidth",
+                "value": 0
+              },
+              {
+                "id": "custom.lineInterpolation",
+                "value": "smooth"
+              },
+              {
+                "id": "custom.showPoints",
+                "value": "never"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "avg"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "green",
+                  "mode": "fixed"
+                }
+              },
+              {
+                "id": "custom.lineInterpolation",
+                "value": "smooth"
+              },
+              {
+                "id": "custom.lineWidth",
+                "value": 3
+              },
+              {
+                "id": "custom.showPoints",
+                "value": "never"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 17,
+        "x": 0,
+        "y": 0
+      },
+      "id": 6,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "9.1.6-10b38e80",
+      "targets": [
+        {
+          "database": "\"metricsDB\"",
+          "datasource": {
+            "type": "grafana-timestream-datasource",
+            "uid": "${DS_AMAZONTIMESTREAM}"
+          },
+          "measure": "available",
+          "rawQuery": "-- Get the overall cpu statistics of a task given the AWS_BATCH_JOB_ID value.\n-- same for mem, just replace cpu by mem IN the lines below.\nSELECT  BIN(time, $interval)                                              AS binned_timestamp\n       ,AWS_BATCH_JOB_ID\n       ,CONCAT('cpu_',measure_name)                                       AS measure\n       ,COALESCE( MIN(measure_value::bigint),MIN(measure_value::double) )/100 AS min\n       ,COALESCE( AVG(measure_value::bigint),AVG(measure_value::double) )/100 AS avg\n       ,COALESCE( MAX(measure_value::bigint),MAX(measure_value::double) )/100 AS max\nFROM \"metricsDB\".\"docker_container_cpu\"\nWHERE AWS_BATCH_JOB_ID = '$AWS_BATCH_JOB_ID' AND measure_name = 'usage_percent'\nGROUP BY  AWS_BATCH_JOB_ID\n         ,measure_name\n         ,BIN(time, $interval)\nORDER BY binned_timestamp ASC\n",
+          "refId": "A",
+          "table": "\"mem\""
+        }
+      ],
+      "title": "CPU Usage",
+      "transparent": true,
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "grafana-timestream-datasource",
+        "uid": "${DS_AMAZONTIMESTREAM}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 7,
+        "x": 17,
+        "y": 0
+      },
+      "id": 14,
+      "options": {
+        "displayMode": "gradient",
+        "maxVizHeight": 300,
+        "minVizHeight": 10,
+        "minVizWidth": 0,
+        "namePlacement": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "sizing": "auto",
+        "valueMode": "color"
+      },
+      "pluginVersion": "10.4.0-65875",
+      "targets": [
+        {
+          "database": "\"metricsDB\"",
+          "datasource": {
+            "type": "grafana-timestream-datasource",
+            "uid": "${DS_AMAZONTIMESTREAM}"
+          },
+          "measure": "available",
+          "rawQuery": "-- Get the overall cpu statistics of a task given the AWS_BATCH_JOB_ID value.\n-- same for mem, just replace cpu by mem IN the lines below.\nSELECT  COALESCE( MAX(measure_value::bigint),MAX(measure_value::double) )/100 AS max_measured\n       ,COALESCE( AVG(measure_value::bigint),AVG(measure_value::double) )/100 AS avg_measured\n       --,COALESCE( MIN(measure_value::bigint),MIN(measure_value::double) ) AS min\nFROM \"metricsDB\".\"docker_container_cpu\"\nWHERE AWS_BATCH_JOB_ID = '$AWS_BATCH_JOB_ID' AND measure_name = 'usage_percent'\nGROUP BY  AWS_BATCH_JOB_ID\n         ,measure_name",
+          "refId": "A",
+          "table": "\"mem\""
+        }
+      ],
+      "title": "CPU Usage",
+      "transparent": true,
+      "type": "bargauge"
+    },
+    {
+      "datasource": {
+        "type": "grafana-timestream-datasource",
+        "uid": "${DS_AMAZONTIMESTREAM}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "text",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "ns",
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 7,
+        "x": 17,
+        "y": 3
+      },
+      "id": 18,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "10.4.0-65875",
+      "targets": [
+        {
+          "database": "\"metricsDB\"",
+          "datasource": {
+            "type": "grafana-timestream-datasource",
+            "uid": "${DS_AMAZONTIMESTREAM}"
+          },
+          "measure": "available",
+          "rawQuery": "-- Get the overall cpu statistics of a task given the AWS_BATCH_JOB_ID value.\n-- same for mem, just replace cpu by mem IN the lines below.\nSELECT  COALESCE( MAX(measure_value::bigint),MAX(measure_value::double) ) AS usage_total\nFROM \"metricsDB\".\"docker_container_cpu\"\nWHERE AWS_BATCH_JOB_ID = '$AWS_BATCH_JOB_ID' AND measure_name = 'usage_total'\nGROUP BY  AWS_BATCH_JOB_ID\n         ,measure_name\n",
+          "refId": "A",
+          "table": "\"mem\""
+        }
+      ],
+      "title": "Accumulated CPU Time",
+      "transparent": true,
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "grafana-timestream-datasource",
+        "uid": "${DS_AMAZONTIMESTREAM}"
+      },
+      "description": "The metrics labels available for this task, listed from the first CPU entry.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false
+          },
+          "links": [
+            {
+              "targetBlank": true,
+              "title": "Open Group Stats",
+              "url": "d/e92654fd-02c6-446b-bb6f-c2134780e247/task-group-level-stats?orgId=1&var-DATA_SOURCE=${DATA_SOURCE}﻿&var-interval=$__auto_interval_interval&var-label=﻿${__data.fields.Field}﻿&var-val=${__data.fields[\"Last *\"]}&from=﻿${__from}﻿&to=${__to}"
+            }
+          ],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 7,
+        "x": 17,
+        "y": 5
+      },
+      "id": 20,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "frameIndex": 1,
+        "showHeader": true
+      },
+      "pluginVersion": "10.4.0-65875",
+      "targets": [
+        {
+          "database": "\"metricsDB\"",
+          "datasource": {
+            "type": "grafana-timestream-datasource",
+            "uid": "${DS_AMAZONTIMESTREAM}"
+          },
+          "measure": "cpuAssignedCount",
+          "rawQuery": "-- Get the overall cpu statistics of a task given the AWS_BATCH_JOB_ID value.\n-- same for mem, just replace cpu by mem IN the lines below.\nSELECT *\nFROM \"metricsDB\".\"docker_container_cpu\"\nWHERE AWS_BATCH_JOB_ID = '$AWS_BATCH_JOB_ID'\nlimit 1",
+          "refId": "A",
+          "table": "\"aggregated_metrics\""
+        }
+      ],
+      "title": "Links to Label - Group Stats",
+      "transformations": [
+        {
+          "id": "reduce",
+          "options": {
+            "labelsToFields": false,
+            "reducers": [
+              "lastNotNull"
+            ]
+          }
+        },
+        {
+          "id": "filterByValue",
+          "options": {
+            "filters": [
+              {
+                "config": {
+                  "id": "isNull",
+                  "options": {}
+                },
+                "fieldName": "Last *"
+              },
+              {
+                "config": {
+                  "id": "regex",
+                  "options": {
+                    "value": "measure_.*"
+                  }
+                },
+                "fieldName": "Field"
+              }
+            ],
+            "match": "any",
+            "type": "exclude"
+          }
+        },
+        {
+          "id": "sortBy",
+          "options": {
+            "fields": {},
+            "sort": [
+              {
+                "field": "Field"
+              }
+            ]
+          }
+        }
+      ],
+      "transparent": true,
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "grafana-timestream-datasource",
+        "uid": "${DS_AMAZONTIMESTREAM}"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "orange",
+            "mode": "fixed"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 100,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "normal"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "ns",
+          "unitScale": true
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "user"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "light-green",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 17,
+        "x": 0,
+        "y": 8
+      },
+      "id": 7,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "9.1.6-10b38e80",
+      "targets": [
+        {
+          "database": "\"metricsDB\"",
+          "datasource": {
+            "type": "grafana-timestream-datasource",
+            "uid": "${DS_AMAZONTIMESTREAM}"
+          },
+          "hide": false,
+          "measure": "container_id",
+          "rawQuery": "-- Get the overall cpu statistics of a task given the AWS_BATCH_JOB_ID value.\n-- same for mem, just replace cpu by mem IN the lines below.\nSELECT  BIN(time, $interval)                                              AS binned_timestamp\n       ,AWS_BATCH_JOB_ID\n       ,CONCAT('user_cpu_',measure_name)                                       AS measure\n       ,COALESCE( MAX(measure_value::bigint),MAX(measure_value::double) ) AS user\nFROM \"metricsDB\".\"docker_container_cpu\"\nWHERE AWS_BATCH_JOB_ID = '$AWS_BATCH_JOB_ID' AND measure_name = 'usage_in_usermode'\nGROUP BY  AWS_BATCH_JOB_ID\n         ,measure_name\n         ,BIN(time, $interval)\nORDER BY binned_timestamp ASC\n",
+          "refId": "C",
+          "table": "\"docker_container_cpu\""
+        },
+        {
+          "database": "\"metricsDB\"",
+          "datasource": {
+            "type": "grafana-timestream-datasource",
+            "uid": "${DS_AMAZONTIMESTREAM}"
+          },
+          "hide": false,
+          "measure": "available",
+          "rawQuery": "-- Get the overall cpu statistics of a task given the AWS_BATCH_JOB_ID value.\n-- same for mem, just replace cpu by mem IN the lines below.\nSELECT  BIN(time, $interval)                                              AS binned_timestamp\n       ,AWS_BATCH_JOB_ID\n       ,CONCAT('kernel_cpu_',measure_name)                                       AS measure\n       ,COALESCE( MAX(measure_value::bigint),MAX(measure_value::double) ) AS kernel\nFROM \"metricsDB\".\"docker_container_cpu\"\nWHERE AWS_BATCH_JOB_ID = '$AWS_BATCH_JOB_ID' AND measure_name = 'usage_in_kernelmode'\nGROUP BY  AWS_BATCH_JOB_ID\n         ,measure_name\n         ,BIN(time, $interval)\nORDER BY binned_timestamp ASC\n",
+          "refId": "B",
+          "table": "\"mem\""
+        }
+      ],
+      "title": "Accumulated CPU Time",
+      "transparent": true,
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "grafana-timestream-datasource",
+        "uid": "${DS_AMAZONTIMESTREAM}"
+      },
+      "description": "Memory Used - Amount of memory actively used by the task.\nCache - Size of files cached by the system into unused memory to improve performance.",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 100,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "normal"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "bytes",
+          "unitScale": true
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "limit_max"
+            },
+            "properties": [
+              {
+                "id": "custom.stacking",
+                "value": {
+                  "group": "A",
+                  "mode": "none"
+                }
+              },
+              {
+                "id": "custom.lineStyle",
+                "value": {
+                  "dash": [
+                    10,
+                    10
+                  ],
+                  "fill": "dash"
+                }
+              },
+              {
+                "id": "custom.fillOpacity",
+                "value": 0
+              },
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#383838",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "usage_max"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "super-light-blue",
+                  "mode": "fixed"
+                }
+              },
+              {
+                "id": "displayName",
+                "value": "Memory Used"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "cache_max"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "super-light-orange",
+                  "mode": "fixed"
+                }
+              },
+              {
+                "id": "displayName",
+                "value": "Cache"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 17,
+        "x": 0,
+        "y": 12
+      },
+      "id": 21,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "9.1.6-10b38e80",
+      "targets": [
+        {
+          "database": "\"metricsDB\"",
+          "datasource": {
+            "type": "grafana-timestream-datasource",
+            "uid": "${DS_AMAZONTIMESTREAM}"
+          },
+          "measure": "available",
+          "rawQuery": "SELECT binned_timestamp\n      ,AWS_BATCH_JOB_ID\n      ,usage_max\n      ,CASE\n          WHEN usage_max + total_cache_max > limit_max THEN limit_max\n          ELSE total_cache_max\n       END AS cache_max\n       ,limit_max\nFROM (\n    SELECT BIN(time, $interval) AS binned_timestamp\n          ,AWS_BATCH_JOB_ID\n          ,MAX(CASE WHEN measure_name = 'usage' THEN measure_value::bigint ELSE NULL END) AS usage_max\n          ,MAX(CASE WHEN measure_name = 'total_cache' THEN measure_value::bigint ELSE NULL END) AS total_cache_max\n          ,MAX(CASE WHEN measure_name = 'limit' THEN measure_value::bigint ELSE NULL END) AS limit_max\n    FROM \"metricsDB\".\"docker_container_mem\"\n    WHERE AWS_BATCH_JOB_ID = '$AWS_BATCH_JOB_ID'\n      AND measure_name IN ('limit', 'usage', 'total_cache')\n      AND $__timeFilter\n    GROUP BY 1, 2\n) AS grouped_data\nORDER BY binned_timestamp ASC\n",
+          "refId": "A",
+          "table": "\"mem\""
+        },
+        {
+          "database": "\"metricsDB\"",
+          "datasource": {
+            "type": "grafana-timestream-datasource",
+            "uid": "${DS_AMAZONTIMESTREAM}"
+          },
+          "hide": true,
+          "measure": "available",
+          "rawQuery": "\n-- Get the limit line\nSELECT  BIN(time, $interval)                                              AS binned_timestamp \n       ,AWS_BATCH_JOB_ID\n       ,COALESCE( MAX(measure_value::bigint),MAX(measure_value::double) ) AS limit\nFROM \"metricsDB\".\"docker_container_mem\"\nWHERE AWS_BATCH_JOB_ID = '$AWS_BATCH_JOB_ID' AND (measure_name = 'limit' OR measure_name = 'total_cache') AND $__timeFilter\nGROUP BY  AWS_BATCH_JOB_ID\n         ,measure_name\n         ,BIN(time, $interval) \nORDER BY binned_timestamp ASC",
+          "refId": "B",
+          "table": "\"mem\""
+        },
+        {
+          "database": "\"metricsDB\"",
+          "datasource": {
+            "type": "grafana-timestream-datasource",
+            "uid": "${DS_AMAZONTIMESTREAM}"
+          },
+          "hide": true,
+          "measure": "available",
+          "rawQuery": "-- Get the overall cpu statistics of a task given the AWS_BATCH_JOB_ID value.\n-- same for mem, just replace cpu by mem IN the lines below.\nSELECT  BIN(time, $interval)                                              AS binned_timestamp\n       ,AWS_BATCH_JOB_ID\n       ,CONCAT('mem_',measure_name)                                       AS measure\n       ,COALESCE( MIN(measure_value::bigint),MIN(measure_value::double) ) AS min\n       ,COALESCE( AVG(measure_value::bigint),AVG(measure_value::double) ) AS avg\n       ,COALESCE( MAX(measure_value::bigint),MAX(measure_value::double) ) AS max\nFROM \"metricsDB\".\"docker_container_mem\"\nWHERE AWS_BATCH_JOB_ID = '$AWS_BATCH_JOB_ID' AND measure_name = 'total_cache'\nGROUP BY  AWS_BATCH_JOB_ID\n         ,measure_name\n         ,BIN(time, $interval) \nORDER BY binned_timestamp ASC\n",
+          "refId": "C",
+          "table": "\"mem\""
+        }
+      ],
+      "title": "Memory Usage",
+      "transparent": true,
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "grafana-timestream-datasource",
+        "uid": "${DS_AMAZONTIMESTREAM}"
+      },
+      "description": "Limit - memory limit set for the container.\nMax Measured - The maximum amount of memory actively used by the task\nMax Absolute - The maximum memory achieved, including the cache.\nCache - Size of files cached by the system into unused memory to improve performance.\n",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "continuous-GrYlRd"
+          },
+          "mappings": [],
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "bytes",
+          "unitScale": true
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "limit"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#6e6e6e",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 7,
+        "x": 17,
+        "y": 12
+      },
+      "id": 15,
+      "options": {
+        "displayMode": "gradient",
+        "maxVizHeight": 300,
+        "minVizHeight": 16,
+        "minVizWidth": 8,
+        "namePlacement": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "max"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true,
+        "sizing": "auto",
+        "valueMode": "text"
+      },
+      "pluginVersion": "10.4.0-65875",
+      "targets": [
+        {
+          "database": "\"metricsDB\"",
+          "datasource": {
+            "type": "grafana-timestream-datasource",
+            "uid": "${DS_AMAZONTIMESTREAM}"
+          },
+          "hide": false,
+          "measure": "memory_total",
+          "rawQuery": "SELECT \n    AWS_BATCH_JOB_ID,\n    COALESCE(MAX(CASE WHEN measure_name = 'limit' THEN measure_value::bigint END),\n             MAX(CASE WHEN measure_name = 'limit' THEN measure_value::double END)) AS limit,\n    COALESCE(MAX(CASE WHEN measure_name = 'usage' THEN measure_value::bigint END),\n             MAX(CASE WHEN measure_name = 'usage' THEN measure_value::double END)) AS max_measured,\n    COALESCE(AVG(CASE WHEN measure_name = 'usage' THEN measure_value::bigint END),\n             AVG(CASE WHEN measure_name = 'usage' THEN measure_value::double END)) AS avg_measured,\n    COALESCE(MAX(CASE WHEN measure_name = 'max_usage' THEN measure_value::bigint END),\n             MAX(CASE WHEN measure_name = 'max_usage' THEN measure_value::double END)) AS max_absolute,\n     COALESCE(AVG(CASE WHEN measure_name = 'total_cache' THEN measure_value::bigint END),\n             AVG(CASE WHEN measure_name = 'total_cache' THEN measure_value::double END)) AS avg_cache,\n    COALESCE(MAX(CASE WHEN measure_name = 'total_cache' THEN measure_value::bigint END),\n             MAX(CASE WHEN measure_name = 'total_cache' THEN measure_value::double END)) AS max_cache\nFROM \n    \"metricsDB\".\"docker_container_mem\"\nWHERE \n    AWS_BATCH_JOB_ID = '$AWS_BATCH_JOB_ID'\nGROUP BY \n    AWS_BATCH_JOB_ID\n",
+          "refId": "D",
+          "table": "\"docker\""
+        }
+      ],
+      "title": "Memory Usage",
+      "transparent": true,
+      "type": "bargauge"
+    },
+    {
+      "datasource": {
+        "type": "grafana-timestream-datasource",
+        "uid": "${DS_AMAZONTIMESTREAM}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 20
+      },
+      "id": 8,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "frameIndex": 1,
+        "showHeader": true
+      },
+      "pluginVersion": "10.4.0-65875",
+      "targets": [
+        {
+          "database": "\"metricsDB\"",
+          "datasource": {
+            "type": "grafana-timestream-datasource",
+            "uid": "${DS_AMAZONTIMESTREAM}"
+          },
+          "measure": "available",
+          "rawQuery": "-- Get the overall cpu statistics of a task given the AWS_BATCH_JOB_ID value.\n-- same for mem, just replace cpu by mem IN the lines below.\nSELECT CONCAT('cpu_', measure_name) as measure_name\n       ,COALESCE( MIN(measure_value::bigint),MIN(measure_value::double) ) AS min\n       ,COALESCE( AVG(measure_value::bigint),AVG(measure_value::double) ) AS avg\n       ,COALESCE( MAX(measure_value::bigint),MAX(measure_value::double) ) AS max\nFROM \"metricsDB\".\"docker_container_cpu\"\nWHERE AWS_BATCH_JOB_ID = '$AWS_BATCH_JOB_ID'\nGROUP BY measure_name",
+          "refId": "A",
+          "table": "\"mem\""
+        }
+      ],
+      "title": "CPU Measurements",
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "grafana-timestream-datasource",
+        "uid": "${DS_AMAZONTIMESTREAM}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "decbytes",
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 20
+      },
+      "id": 9,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "frameIndex": 1,
+        "showHeader": true
+      },
+      "pluginVersion": "10.4.0-65875",
+      "targets": [
+        {
+          "database": "\"metricsDB\"",
+          "datasource": {
+            "type": "grafana-timestream-datasource",
+            "uid": "${DS_AMAZONTIMESTREAM}"
+          },
+          "measure": "available",
+          "rawQuery": "-- Get the overall cpu statistics of a task given the AWS_BATCH_JOB_ID value.\n-- same for mem, just replace cpu by mem IN the lines below.\nSELECT CONCAT('mem_', measure_name) as measure_name\n       ,COALESCE( MIN(measure_value::bigint),MIN(measure_value::double) ) AS min\n       ,COALESCE( AVG(measure_value::bigint),AVG(measure_value::double) ) AS avg\n       ,COALESCE( MAX(measure_value::bigint),MAX(measure_value::double) ) AS max\nFROM \"metricsDB\".\"docker_container_mem\"\nWHERE AWS_BATCH_JOB_ID = '$AWS_BATCH_JOB_ID'\nGROUP BY measure_name",
+          "refId": "A",
+          "table": "\"mem\""
+        }
+      ],
+      "title": "MEM Measurements",
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "grafana-timestream-datasource",
+        "uid": "${DS_AMAZONTIMESTREAM}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "bytes",
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 29
+      },
+      "id": 10,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "frameIndex": 1,
+        "showHeader": true
+      },
+      "pluginVersion": "10.4.0-65610",
+      "targets": [
+        {
+          "database": "\"metricsDB\"",
+          "datasource": {
+            "type": "grafana-timestream-datasource",
+            "uid": "${DS_AMAZONTIMESTREAM}"
+          },
+          "measure": "available",
+          "rawQuery": "-- Get the overall cpu statistics of a task given the AWS_BATCH_JOB_ID value.\n-- same for mem, just replace cpu by mem IN the lines below.\nSELECT CONCAT('blkio_', measure_name) as measure_name\n       ,MIN(measure_value::bigint) AS min\n       ,AVG(measure_value::bigint) AS avg\n       ,MAX(measure_value::bigint) AS max\nFROM \"metricsDB\".\"docker_container_blkio\"\nWHERE AWS_BATCH_JOB_ID = '$AWS_BATCH_JOB_ID'\nGROUP BY measure_name",
+          "refId": "A",
+          "table": "\"mem\""
+        }
+      ],
+      "title": "BLKIO Measurements",
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "grafana-timestream-datasource",
+        "uid": "${DS_AMAZONTIMESTREAM}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "none",
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 29
+      },
+      "id": 12,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "frameIndex": 1,
+        "showHeader": true
+      },
+      "pluginVersion": "10.4.0-65610",
+      "targets": [
+        {
+          "database": "\"metricsDB\"",
+          "datasource": {
+            "type": "grafana-timestream-datasource",
+            "uid": "${DS_AMAZONTIMESTREAM}"
+          },
+          "measure": "available",
+          "rawQuery": "-- Get the overall cpu statistics of a task given the AWS_BATCH_JOB_ID value.\n-- same for mem, just replace cpu by mem IN the lines below.\nSELECT CONCAT('dcs_', measure_name) as measure_name\n       ,MIN(measure_value::bigint) AS min\n       ,AVG(measure_value::bigint) AS avg\n       ,MAX(measure_value::bigint) AS max\nFROM \"metricsDB\".\"docker_container_status\"\nWHERE AWS_BATCH_JOB_ID = '$AWS_BATCH_JOB_ID'\nGROUP BY AWS_BATCH_JOB_ID, measure_name",
+          "refId": "A",
+          "table": "\"mem\""
+        }
+      ],
+      "title": "Container Stats Measurements",
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "grafana-timestream-datasource",
+        "uid": "${DS_AMAZONTIMESTREAM}"
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 24,
+        "x": 0,
+        "y": 38
+      },
+      "id": 19,
+      "options": {
+        "code": {
+          "language": "plaintext",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
+        "content": "<center>\n<h1>Host Monitoring</h1>\n<p>\nThe data below shows metrics of the VM instance <code>$HOST</code>.  \nMultiple tasks can run on one instance.\n</p>\n</center>",
+        "mode": "html"
+      },
+      "pluginVersion": "10.4.0-65610",
+      "targets": [
+        {
+          "database": "\"metricsDB\"",
+          "datasource": {
+            "type": "grafana-timestream-datasource",
+            "uid": "${DS_AMAZONTIMESTREAM}"
+          },
+          "measure": "available",
+          "rawQuery": "-- Get the overall cpu statistics of a task given the AWS_BATCH_JOB_ID value.\n-- same for mem, just replace cpu by mem IN the lines below.\nSELECT host, CONCAT('dd_', measure_name) as measure_name\n       ,MIN(measure_value::bigint) AS min\n       ,AVG(measure_value::bigint) AS avg\n       ,MAX(measure_value::bigint) AS max\nFROM \"metricsDB\".\"docker_data\"\nWHERE host = '$HOST'\nGROUP BY host, measure_name",
+          "refId": "A",
+          "table": "\"mem\""
+        }
+      ],
+      "transparent": true,
+      "type": "text"
+    },
+    {
+      "datasource": {
+        "type": "grafana-timestream-datasource",
+        "uid": "${DS_AMAZONTIMESTREAM}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false,
+            "minWidth": 50
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "bytes",
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 9,
+        "x": 0,
+        "y": 41
+      },
+      "id": 13,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "frameIndex": 1,
+        "showHeader": true
+      },
+      "pluginVersion": "10.4.0-65610",
+      "targets": [
+        {
+          "database": "\"metricsDB\"",
+          "datasource": {
+            "type": "grafana-timestream-datasource",
+            "uid": "${DS_AMAZONTIMESTREAM}"
+          },
+          "measure": "available",
+          "rawQuery": "-- Get the overall cpu statistics of a task given the AWS_BATCH_JOB_ID value.\n-- same for mem, just replace cpu by mem IN the lines below.\nSELECT CONCAT('dd_', measure_name) as measure_name\n       ,MIN(measure_value::bigint) AS min\n       ,AVG(measure_value::bigint) AS avg\n       ,MAX(measure_value::bigint) AS max\nFROM \"metricsDB\".\"docker_data\"\nWHERE host = '$HOST'\nGROUP BY measure_name",
+          "refId": "A",
+          "table": "\"mem\""
+        }
+      ],
+      "title": "Docker Data Measurements",
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "grafana-timestream-datasource",
+        "uid": "${DS_AMAZONTIMESTREAM}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "decbytes",
+          "unitScale": true
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 15,
+        "x": 9,
+        "y": 41
+      },
+      "id": 11,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "frameIndex": 1,
+        "showHeader": true
+      },
+      "pluginVersion": "10.4.0-65610",
+      "targets": [
+        {
+          "database": "\"metricsDB\"",
+          "datasource": {
+            "type": "grafana-timestream-datasource",
+            "uid": "${DS_AMAZONTIMESTREAM}"
+          },
+          "measure": "available",
+          "rawQuery": "-- Get the overall cpu statistics of a task given the AWS_BATCH_JOB_ID value.\n-- same for mem, just replace cpu by mem IN the lines below.\nSELECT CONCAT('dm_', measure_name) as measure_name\n       ,MIN(measure_value::bigint) AS min\n       ,AVG(measure_value::bigint) AS avg\n       ,MAX(measure_value::bigint) AS max\nFROM \"metricsDB\".\"docker_devicemapper\"\nWHERE host = '$HOST'\nGROUP BY measure_name",
+          "refId": "A",
+          "table": "\"mem\""
+        }
+      ],
+      "title": "Device Mapper (dm)",
+      "type": "table"
+    }
+  ],
+  "refresh": "",
+  "revision": 1,
+  "schemaVersion": 39,
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "selected": false,
+          "text": "AmazonTimestream",
+          "value": "6U54SZIVk"
+        },
+        "hide": 0,
+        "includeAll": false,
+        "label": "Data Source",
+        "multi": false,
+        "name": "DATA_SOURCE",
+        "options": [],
+        "query": "grafana-timestream-datasource",
+        "queryValue": "",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "type": "datasource"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "8e418dd6-62bc-4f1a-8d32-e115604c909d",
+          "value": "8e418dd6-62bc-4f1a-8d32-e115604c909d"
+        },
+        "description": "The Batch Job ID",
+        "hide": 0,
+        "label": "AWS Batch Job ID",
+        "name": "AWS_BATCH_JOB_ID",
+        "options": [
+          {
+            "selected": false,
+            "text": "11fd97c5-d3ef-4565-994d-d80a1d41bc2a",
+            "value": "11fd97c5-d3ef-4565-994d-d80a1d41bc2a"
+          }
+        ],
+        "query": "8e418dd6-62bc-4f1a-8d32-e115604c909d",
+        "skipUrlSync": false,
+        "type": "textbox"
+      },
+      {
+        "auto": true,
+        "auto_count": 30,
+        "auto_min": "10s",
+        "current": {
+          "selected": false,
+          "text": "auto",
+          "value": "$__auto_interval_interval"
+        },
+        "description": "The size of the bins in the timeseries data.",
+        "hide": 0,
+        "label": "Resolution",
+        "name": "interval",
+        "options": [
+          {
+            "selected": true,
+            "text": "auto",
+            "value": "$__auto_interval_interval"
+          },
+          {
+            "selected": false,
+            "text": "10s",
+            "value": "10s"
+          },
+          {
+            "selected": false,
+            "text": "30s",
+            "value": "30s"
+          },
+          {
+            "selected": false,
+            "text": "1m",
+            "value": "1m"
+          },
+          {
+            "selected": false,
+            "text": "10m",
+            "value": "10m"
+          },
+          {
+            "selected": false,
+            "text": "30m",
+            "value": "30m"
+          },
+          {
+            "selected": false,
+            "text": "1h",
+            "value": "1h"
+          },
+          {
+            "selected": false,
+            "text": "6h",
+            "value": "6h"
+          },
+          {
+            "selected": false,
+            "text": "12h",
+            "value": "12h"
+          },
+          {
+            "selected": false,
+            "text": "1d",
+            "value": "1d"
+          },
+          {
+            "selected": false,
+            "text": "7d",
+            "value": "7d"
+          },
+          {
+            "selected": false,
+            "text": "14d",
+            "value": "14d"
+          },
+          {
+            "selected": false,
+            "text": "30d",
+            "value": "30d"
+          }
+        ],
+        "query": "10s,30s,1m,10m,30m,1h,6h,12h,1d,7d,14d,30d",
+        "queryValue": "",
+        "refresh": 2,
+        "skipUrlSync": false,
+        "type": "interval"
+      },
+      {
+        "current": {},
+        "datasource": {
+          "type": "grafana-timestream-datasource",
+          "uid": "${DS_AMAZONTIMESTREAM}"
+        },
+        "definition": "SELECT host\n   FROM \"metricsDB\".\"docker_container_cpu\"\n   WHERE AWS_BATCH_JOB_ID = '$AWS_BATCH_JOB_ID'\n   LIMIT 1",
+        "hide": 2,
+        "includeAll": false,
+        "multi": false,
+        "name": "HOST",
+        "options": [],
+        "query": "SELECT host\n   FROM \"metricsDB\".\"docker_container_cpu\"\n   WHERE AWS_BATCH_JOB_ID = '$AWS_BATCH_JOB_ID'\n   LIMIT 1",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-2d",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "Task Stats",
+  "uid": "CqdB5ZSVk",
+  "version": 67,
+  "weekStart": ""
+}

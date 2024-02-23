@@ -1,7 +1,7 @@
 
 # CMK
 
-This is a fine-grained metrics monitoring system optimized for bioinformatics workflow executions. It offers comprehensive insights into resource utilization for individual tasks and groups of tasks, with a focus on cost-effectiveness and integration with other systems.
+This is a fine-grained metrics monitoring system optimized for bioinformatics workflow executions in cloud computing. It offers comprehensive insights into resource utilization for individual tasks and groups of tasks, with a focus on cost-effectiveness and integration with other systems.
 
 ## Table of Contents
 
@@ -26,17 +26,17 @@ The increasingly common use of multiple Workflow Management Systems (WMS) platfo
 
 The architecture proposed here comprises a monitoring system to collect, store, and access metrics of a batch-processing environment. This monitoring system aims to offer insights into the use of resources at a granular level for every task executed in the system, as well as metrics for grouped tasks based on labels defined by the user, and create a summary of the use of resources based on these defined groups.
 
-![Reference architecture](img/ma_generic.png)
+![Reference architecture](img/fig2.png)
 
 At the core of the system is the monitoring agent, which runs as a service on each cluster node. The agent is responsible for connecting to the Container Engine API at the instance level and for collecting metrics regarding the use of available resources by each container running on the same instance. The collected metrics are then saved into a Time Series Database (TSD) for future exploration. The TSD is a specialized database optimized for handling time-series data and has built-in functions and operators that allow for efficient data exploration. The database entries contain the values of the metrics, tagged with attributes such as the task, workflow id, or node instance ids. Additional labels can be attached to the tasks to create groupings from which aggregated statistics can be extracted. The database can then be queried directly, which allows for the inspection of the full range of collected metrics and the creation of resource usage dashboards.
 
-Integrations with other systems are available through the use of a rest API, or by connecting to an event bus that provides real-time notifications of new metrics. When a task ends, the batch system notifies a task change event to a default event bus. A task change rule captures these events and invokes a handler function, which queries the database to create aggregated statistics and stores them in the TSD. The same handler can also publish the new aggregated metrics into an event bus.
+Integrations with other systems are available through direct connection and query of the database, or by connecting to an event bus that provides real-time notifications of new metrics. When a task ends, the batch system notifies a task change event to a default event bus. A task change rule captures these events and invokes a handler function, which queries the database to create aggregated statistics and stores them in the TSD. The same handler can also publish the new aggregated metrics into an event bus, from where it can be captured and further processed, or stored long term.
 
 ## Architecture on AWS
 
 Different  WMS used in bioinformatics, like Nextflow or Cromwell, support AWS Batch for the execution environment on AWS. This implementation collects metrics from tasks running in the AWS Batch service, configured with EC2 Compute Environments. AWS Batch is a task scheduling service comprised of queues and compute environments. A compute environment is a cluster of nodes that can scale automatically to match the resources required by the tasks in the queue.
 
-![AWS architecture](img/ma_aws.png)
+![AWS architecture](img/fig3.png)
 
 ### Collection
 
@@ -49,16 +49,16 @@ The Telegraf agent is configured with a Timestream output plugin to store the co
 ### Access
 
 The metrics data can be directly retrieved from the Amazon Timestream service using the AWS console or from a third-party platform with Timestream integration. e.g., Grafana Cloud.
-Aggregated statistics of the data are available via the REST API implemented in the API Gateway service or as events every time a task ends by subscribing with a rule to the custom event bus.
+Aggregated statistics of the data are available as events every time a task ends by subscribing to the Statistics event bus.
 Amazon Cognito is used to access the REST API with authenticated users.
 
 ### Dashboards
 
-A Grafana dashboard can directly visualize the resources used by a task, or by a group of tasks.
+Grafana dashboards can directly visualize the resources used by a task, or by a group of tasks. The following two dashboards can be found in [grafana dashboards](./grafana-dashboards/).
 
 Metrics of One Task             |  Metrics Aggregated by Task Family
 :-------------------------:|:-------------------------:
-![](img/dashboard_one_task.png)  |  ![](img/dashboard_aggregate_by_family.png)
+![](img/fig7.png)  |  ![](img/fig8.png)
 
 ### Features
 
@@ -67,6 +67,12 @@ Metrics of One Task             |  Metrics Aggregated by Task Family
 - Monitoring tasks executed on AWS Batch, a popular backend platform for scientific WMS
 - Grouping tasks by labels for aggregated statistics
 - Modular structure and easy integration with other systems
+
+### Deployment
+
+See the [evaluation readme](./bioinformatics-workflows/EVALUATION_ENVIRONMENT_README.md) for details of a deployment use case and the [cdk readme](./cdk-implementation/README.md) for general information of the app.
+
+
 
 ## License
 

@@ -1,0 +1,67 @@
+# Account parameters - includes the AWS region and account number
+env:
+  # AWS Region where resources will be deployed
+  region: us-east-1
+  # Your AWS account number as a string
+  account: "012345678900"
+
+# Clusters configuration - specifies the VPC and Security Groups to apply the monitoring system
+cluster:
+  # ID of your VPC
+  vpcId: "vpc-1234567890"
+  sgs:
+    # IDs of the security groups attached to the clusters
+    - "sg-f0123459"
+  names:
+    # Name of the first ECS cluster
+    - "spot-runworkflows_Batch_1234abcd-efgh-ijkl-mn12-345abc678def"
+    # Add more ECS clusters if necessary
+
+
+# Time Series Database configuration - sets up database name and retention policies
+timestream:
+  # Name of the Timestream database
+  database: "metricsDB"
+  # Duration in hours to keep the data in memory store
+  memoryRetentionHours: 1
+  # Duration in days to keep the data in magnetic store
+  magneticRetentionDays: 1000
+
+# Monitoring agent configuration - defines log retention period and labels for metrics collection
+agent:
+  # Number of days to retain logs
+  logRetentionDays: 14
+  # Root identifier for the monitoring agent
+  rootId: 994
+  # Labels applied to the monitoring agent
+  labels:
+    C_TOOL: "MonitoringAgent"
+
+# Metrics collection configuration - specifies task ID label and list of labels to retain
+metrics:
+  # Label used to identify task ID of the batch job
+  taskIdLabel: "AWS_BATCH_JOB_ID"
+  # List of labels that should be retained when collecting metrics
+  labelsToKeep:
+    - "host"
+    - "com.amazonaws.ecs.task-definition-family"
+    - "com.amazonaws.ecs.task-definition-version"
+    - "AWS_BATCH_CE_NAME"
+    - "AWS_BATCH_JOB_ID"
+    - "AWS_EXECUTION_ENV"
+    - "container_image"
+    - "container_name"
+    - "container_version"
+    - "server_version"
+    - "C_TOOL"
+    - "C_DATASET"
+    - "C_WMS"
+    - "C_WORKFLOW_ID"
+    - "C_USER_ID"
+  # List of container names to exclude from monitoring
+  excludeContainerNames:
+    - "ecs-agent"
+    - "ecs-coremonitoringstackmonitoringagenttask*"
+
+api:
+  key: X000000000000000001S0
