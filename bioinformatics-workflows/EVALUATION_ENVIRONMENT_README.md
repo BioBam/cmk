@@ -250,6 +250,8 @@ In the `.nf` workflow we have added the labels in the process.
 containerOptions "--env C_TOOL=XXXX --env C_DATASET=${params.ref} --env C_WMS=nextflow"
 ```
 
+Note: For a list of labels that could be useful in a continuous production system, see [Example Labels](EXAMPLE_LABELS.md).
+
 #### Running the proof of concept Nextflow pipeline
 
 1. Install `nextflow` by following the instructions [here](https://www.nextflow.io/)

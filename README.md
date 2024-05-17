@@ -68,6 +68,11 @@ Metrics of One Task             |  Metrics Aggregated by Task Family
 - Grouping tasks by labels for aggregated statistics
 - Modular structure and easy integration with other systems
 
+### Labels
+
+See [Example Labels](EXAMPLE_LABELS.md).
+
+
 ### Deployment
 
 See the [evaluation readme](./bioinformatics-workflows/EVALUATION_ENVIRONMENT_README.md) for details of a deployment use case and the [cdk readme](./cdk-implementation/README.md) for general information of the app.
