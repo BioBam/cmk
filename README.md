@@ -15,6 +15,8 @@ This is a fine-grained metrics monitoring system optimized for bioinformatics wo
     - [Access](#access)
     - [Dashboards](#dashboards)
     - [Features](#features)
+    - [Labels](#labels)
+    - [Deployment](#deployment)
   - [License](#license)
   - [Acknowledgements](#acknowledgements)
 
@@ -70,7 +72,7 @@ Metrics of One Task             |  Metrics Aggregated by Task Family
 
 ### Labels
 
-See [Example Labels](EXAMPLE_LABELS.md).
+See [Example Labels](bioinformatics-workflows/EXAMPLE_LABELS.md).
 
 
 ### Deployment
