@@ -87,6 +87,11 @@ This project is licensed under the Apache License Version 2.0. See the [LICENSE]
 
 <br>
 
+
+## Cite
+
+This repository contains the implementation of the architecture presented in the journal article: `CMK: Enhancing Resource Usage Monitoring across Diverse Bioinformatics Workflow Management Systems` available at https://doi.org/10.1007/S10723-024-09777-Z
+
 ## Acknowledgements
 
 ![](img/logo_UE_FEDER_horiz_convivencia_AVI_Cas.png)
